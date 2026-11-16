@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MCP Setup Docs</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --border: #e3e3e3;
+    --code-bg: #1e1e1e;
+    --code-text: #e8e8e8;
+    --accent: #2563eb;
+    --section-bg: #fafafa;
+    --ok: #15803d;
+    --no: #b91c1c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header.doc-header {
+    border-bottom: 2px solid var(--text);
+    padding-bottom: 20px;
+    margin-bottom: 28px;
+  }
+  header.doc-header h1 {
+    font-size: 30px;
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+  }
+  header.doc-header .meta {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 32px;
+  }
+  .tab-btn {
+    appearance: none;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 10px 18px;
+    cursor: pointer;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -1px;
+    font-family: inherit;
+  }
+  .tab-btn:hover {
+    color: var(--text);
+  }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-panel {
+    display: none;
+  }
+  .tab-panel.active {
+    display: block;
+  }
+
+  h2 {
+    font-size: 22px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  h3 {
+    font-size: 16px;
+    margin-top: 28px;
+    margin-bottom: 10px;
+  }
+  p { margin: 8px 0; }
+  ul, ol {
+    margin: 8px 0 16px;
+    padding-left: 22px;
+  }
+  li { margin-bottom: 4px; }
+  code.inline {
+    background: var(--section-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+    font-size: 13px;
+  }
+  pre {
+    background: var(--code-bg);
+    color: var(--code-text);
+    padding: 14px 16px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 10px 0 16px;
+  }
+  pre code {
+    font-family: "SF Mono", Consolas, Monaco, monospace;
+  }
+  .note-box {
+    background: #fff8e6;
+    border: 1px solid #f0dca0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .note-box strong { display: block; margin-bottom: 4px; }
+  .placeholder {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 20px;
+    font-size: 14px;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--section-bg);
+  }
+  .yes { color: var(--ok); font-weight: 700; }
+  .no { color: var(--no); font-weight: 700; }
+  footer.doc-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc-header">
+    <h1>MCP Setup Docs</h1>
+    <div class="meta">Reference notes for connecting MCP servers to Claude. Updated as new sites/tools are added.</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="figma">Figma</button>
+    <button class="tab-btn" data-tab="elementor">Elementor</button>
+  </div>
+
+  <!-- FIGMA TAB -->
+  <div class="tab-panel active" id="figma">
+    <h2>Figma + Claude Setup</h2>
+
+    <h3>What you need</h3>
+    <ul>
+      <li>Claude Desktop app installed</li>
+      <li>Figma account (Dev seat recommended, ~$10&ndash;12/month, gets 200 calls/day instead of 6&ndash;20/month on Starter)</li>
+      <li>Make sure you're actually added to the client's file/team, not just signed in</li>
+    </ul>
+
+    <h3>Steps</h3>
+    <ol>
+      <li>Open Claude Desktop &rarr; Settings &rarr; Connectors</li>
+      <li>Click <strong>Add custom connector</strong></li>
+      <li>Paste URL: <code class="inline">https://mcp.figma.com/mcp</code></li>
+      <li>Click Add, then sign in with your Figma account when prompted</li>
+      <li>Confirm it shows <strong>Connected</strong></li>
+    </ol>
+
+    <h3>To use it</h3>
+    <ol>
+      <li>In Figma, right-click the frame you want &rarr; <strong>Copy link to selection</strong> (not a plain file link)</li>
+      <li>Paste that link to Claude</li>
+      <li>Say what you want (build this, describe this, extract colors, etc.)</li>
+    </ol>
+
+    <h3>Notes</h3>
+    <ul>
+      <li>Reading counts against your monthly limit, writing/editing is free during Figma's beta for now</li>
+      <li>No Figma desktop app needs to stay open</li>
+      <li>Skip third-party "unlimited" Figma MCP plugins for client work &mdash; personal projects only</li>
+    </ul>
+  </div>
+
+  <!-- ELEMENTOR TAB -->
+  <div class="tab-panel" id="elementor">
+    <h2>Elementor MCP Setup (Claude Code)</h2>
+
+    <h3>Site</h3>
+    <ul>
+      <li>URL: <span class="placeholder">[site URL]</span></li>
+      <li>MCP Endpoint: <span class="placeholder">[site URL]</span>/wp-json/elementor/mcp/</li>
+      <li>Username: <span class="placeholder">[WP username]</span></li>
+      <li>Server name: <span class="placeholder">[choose a unique name per site, e.g. client-name-elementor]</span></li>
+    </ul>
+
+    <h3>Added under</h3>
+    <p>Claude Code CLI (terminal), not Claude Desktop chat. Desktop's Connectors UI doesn't support this (OAuth only); Claude Code does, via custom header auth.</p>
+
+    <h3>Simple steps (Elementor's built-in prompt)</h3>
+    <ol>
+      <li>WP Dashboard &gt; Elementor &gt; Elementor MCP panel</li>
+      <li>Make sure the <strong>Claude Code</strong> tab is selected (also has Claude Desktop, Codex, Cursor, Other)</li>
+      <li>Click <strong>Copy prompt</strong> &mdash; this copies a ready-made connection block, including the app password, for that site</li>
+      <li>Open Terminal, run <code class="inline">claude</code> to start a session</li>
+      <li>Paste the copied prompt and send it &mdash; Claude Code sets up the connection itself</li>
+    </ol>
+
+    <h3>Verify connection</h3>
+    <pre><code>claude mcp list</code></pre>
+    <p>Confirm: <code class="inline">[server-name] ... Connected</code></p>
+
+    <div class="note-box">
+      <strong>Manual route (if needed)</strong>
+      The MCP panel also has a "Prefer manual configuration?" link, which gives the raw JSON block (server name, URL, Basic auth header) to add yourself via <code class="inline">claude mcp add --transport http [server-name] "[mcp-url]" --header "Authorization: Basic [base64-string]"</code>. Use this only if the Copy Prompt route doesn't work.
+    </div>
+
+    <h3>Use it</h3>
+    <pre><code>claude</code></pre>
+    <p>Opens a terminal chat session with the tools below loaded.</p>
+
+    <h3>What it can do</h3>
+
+    <p><strong>Look at things</strong></p>
+    <ul>
+      <li>List pages and posts</li>
+      <li>Read a page's structure</li>
+      <li>List media files (<code class="inline">list-assets</code>)</li>
+      <li>List reusable components (<code class="inline">list-components</code>)</li>
+      <li>List header/footer parts (<code class="inline">list-site-parts</code>)</li>
+      <li>List/read widget types (<code class="inline">list-widget-schemas</code>, <code class="inline">get-widget-schema</code>)</li>
+      <li>Read site resources (<code class="inline">list-resources</code>, <code class="inline">read-resource</code>)</li>
+      <li>Read default styles (<code class="inline">get-default-styles</code>)</li>
+    </ul>
+
+    <p><strong>Make things</strong></p>
+    <ul>
+      <li>Create new page (<code class="inline">create-page</code>)</li>
+      <li>Build full layout in one go (<code class="inline">build-composition</code>)</li>
+      <li>Create a component (<code class="inline">manage-component</code>)</li>
+      <li>Create header/footer part (<code class="inline">manage-site-parts</code>)</li>
+    </ul>
+
+    <p><strong>Change things</strong></p>
+    <ul>
+      <li>Add/edit/move/delete elements (<code class="inline">manage-elements</code>)</li>
+      <li>Change page settings (<code class="inline">update-page-settings</code>)</li>
+      <li>Manage CSS classes (<code class="inline">manage-classes</code>, <code class="inline">reorder-classes</code>)</li>
+      <li>Manage global variables, colors and fonts (<code class="inline">manage-global-variable</code>)</li>
+      <li>Change default styles (<code class="inline">manage-default-styles</code>)</li>
+    </ul>
+
+    <p><strong>Ship things</strong></p>
+    <ul>
+      <li>Publish (<code class="inline">publish-document</code>)</li>
+      <li>Create preview link before publishing (<code class="inline">create-preview-link</code>)</li>
+    </ul>
+
+    <h3>v3 (legacy) vs v4 (atomic)</h3>
+    <table>
+      <thead>
+        <tr><th></th><th>v3 (legacy)</th><th>v4 (atomic)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Widgets</td><td>Heading, Button, Text Editor, Image, Lottie</td><td>e-heading, e-paragraph, e-button, e-image</td></tr>
+        <tr><td>Layout</td><td>Classic containers</td><td>e-flexbox, e-div-block, e-grid</td></tr>
+        <tr><td>Styling</td><td>Panel settings and custom CSS</td><td>Plain CSS, global classes, global variables</td></tr>
+        <tr><td>Built in</td><td>The editor, when Atomic Editor is off</td><td>The editor, when Atomic Editor is on</td></tr>
+        <tr><td>Existing pages</td><td>Stay v3 after a plugin update</td><td>Only new or rebuilt content</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Where the MCP works</h3>
+    <table>
+      <thead>
+        <tr><th>Action</th><th>v3</th><th>v4</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>List pages</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Read page structure (names, nesting)</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Read text and styles</td><td class="no">No (empty)</td><td class="yes">Yes</td></tr>
+        <tr><td>Create a page (blank draft)</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Build sections (build-composition)</td><td class="no">No</td><td class="yes">Yes</td></tr>
+        <tr><td>Edit text, style, move, delete (manage-elements)</td><td class="no">No</td><td class="yes">Yes</td></tr>
+        <tr><td>Duplicate an element</td><td class="no">No</td><td class="yes">Yes</td></tr>
+        <tr><td>Publish</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+        <tr><td>Preview link</td><td class="yes">Yes</td><td class="yes">Yes</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <strong>Small exception</strong>
+      A few v3 widgets can still be edited: nav menu, post title, post content, featured image, post excerpt, archive title. Common widgets like Heading, Button and Text Editor are NOT in that list.
+    </div>
+
+    <h3>Not available for either type (v3 or v4)</h3>
+    <ul>
+      <li>Save as template</li>
+      <li>Insert a template</li>
+      <li>Duplicate a whole page</li>
+    </ul>
+
+    <h3>Does v3 vs v4 change the design look?</h3>
+    <p><strong>Same</strong></p>
+    <ul>
+      <li>The look: colors, fonts, spacing and layout can all be matched in v4</li>
+      <li>Page content: headings, text, buttons, images and links</li>
+      <li>Responsive behavior: v4 supports mobile and tablet breakpoints</li>
+      <li>Publishing: the page works the same on the front end</li>
+    </ul>
+
+    <p><strong>Different</strong></p>
+    <ul>
+      <li>How styling is stored &mdash; v3 uses panel settings + custom CSS, v4 uses plain CSS per element, global classes and global variables</li>
+      <li>Editor panels &mdash; controls sit in different places, some v3 options have no v4 equivalent</li>
+      <li>Widgets &mdash; some v3-only widgets (Lottie, text slider, accordion, etc.) don't have a direct v4 match</li>
+      <li>Shared parts &mdash; existing global templates stay as v3 and don't auto-convert</li>
+      <li>Global styles &mdash; if the site has no global variables/classes yet, a v4 build uses fixed colors/sizes chosen manually</li>
+    </ul>
+
+    <p><strong>What this means in practice</strong></p>
+    <ul>
+      <li>Original v3 design settings can't be read by the MCP &mdash; exact fonts, colors, sizes and spacing can't be copied automatically</li>
+      <li>A v4 rebuild matches structure and wording; styling gets picked manually or matched from a screenshot</li>
+      <li>Expect a close match, not pixel-identical &mdash; do a visual check after rebuilding</li>
+      <li>If an identical look matters most, keep the v3 version and edit text by hand instead of rebuilding</li>
+    </ul>
+
+    <h3>Limitations hit so far, and the fix for each</h3>
+    <table>
+      <thead>
+        <tr><th style="width:36px;">#</th><th>Problem</th><th>What to do</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Old v3 elements and v3 templates &mdash; MCP can read their structure but not their text or styling.</td>
+          <td>Edit text by hand in Elementor. Or rebuild the page in v4 (see #4).</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>MCP can't edit v3 elements. A heading edit returned <code class="inline">elementor_v3_not_supported</code>.</td>
+          <td>Same as #1. Only v4 elements can be changed through the MCP.</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>No tool to save a page as a template, insert a template, or duplicate a page.</td>
+          <td>Do it in WordPress. Save as Template, then Add Template &rarr; My Templates &rarr; Insert.</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>A v4 rebuild needs the original wording, and the MCP can't read it from v3.</td>
+          <td>Paste the page text to Claude directly. Or approve the live-page fetch if it's blocked.</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Atomic Editor was off, so every build call failed.</td>
+          <td>Turn it on: WP Admin &rarr; Elementor &rarr; Settings &rarr; Features.</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>MCP reconnected only after re-adding it.</td>
+          <td>Restart Claude Code, or run <code class="inline">/mcp</code> if the tools go missing.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <strong>Scope</strong>
+      Works only inside Claude Code CLI sessions (terminal: <code class="inline">claude</code>). Not available in Claude Desktop chat window or claude.ai web chat &mdash; those use a separate, OAuth-only connector system.
+    </div>
+
+    <h3>One server per site</h3>
+    <p>Repeat the setup steps for each client site, using a unique server name each time.</p>
+  </div>
+
+  <footer class="doc-footer">
+    More sections (reports, etc.) get added as new tabs or within existing tabs as new ones come in.
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
